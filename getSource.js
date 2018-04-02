@@ -34,12 +34,17 @@ function getData(){
         gu:$('#loc_view3 div.selectbox-label').text(),
         apt:$('#loc_view4 div.selectbox-label').text(),
     };
+
+    console.log($($('#asideComplexInfoLayer .traffic_dsc ul.normal>li')[1]).text());
+    console.log($($('#asideComplexInfoLayer .traffic_dsc ul.normal>li')[3]).text().trim().replace(/[\n\r\s]/g,'').split('/'));
+    console.log($($('#asideComplexInfoLayer .traffic_dsc ul.normal>li')[4]).text());
+    var t0 = $($('#asideComplexInfoLayer .traffic_dsc ul.normal>li')[3]).text().trim().replace(/[\n\r\s]/g,'').split('/');
     var aptInfo = {
-        moveInDate:'',
-        totalNumOfHouseholds:'',
-        totalNumOfDong:'',
-        totalNumOfFloor:'',
-        heating:'',
+        moveInDate:$($('#asideComplexInfoLayer .traffic_dsc ul.normal>li')[1]).text().replace('입주일자 : ', ''),
+        totalNumOfHouseholds:t0[0].replace('총', '').replace('세대', ''),
+        totalNumOfDong:t0[1].replace('총', '').replace('개동', ''),
+        totalNumOfFloor:t0[2].replace('총', '').replace('층', ''),
+        heating:$($('#asideComplexInfoLayer .traffic_dsc ul.normal>li')[4]).text(),
     };
     return {
         location:location,
