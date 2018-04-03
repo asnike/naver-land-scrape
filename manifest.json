@@ -4,17 +4,17 @@
   "description":"naver land scrape",
   "version":"1.0",
   "icons":{
-    "48":"icon.png"
+    "48":"imgs/icon.png"
   },
   "browser_action":{
-      "default_icon":"icon.png",
+      "default_icon":"imgs/icon.png",
       "default_popup":"popup.html"
   },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "permissions":[
       "<all_urls>",
       "tabs",
       "http://*/",
       "https://*/"
-  ],
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+  ]
 }

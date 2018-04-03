@@ -10,7 +10,7 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 
 function onWindowLoad() {
     chrome.tabs.executeScript(null, {
-        file: 'jquery-3.2.0.min.js'
+        file: 'libs/jquery-3.2.0.min.js'
     }, function(){
         chrome.tabs.executeScript(null, {
             file: "getSource.js"
@@ -53,6 +53,13 @@ var APP = (function(){
                 '<td>'+data.aptInfo.heating+'</td>'+
                 '</tr>').appendTo('#rows');
         }
+
+        $('#aptInfo').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
     };
 
     return {
