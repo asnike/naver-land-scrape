@@ -31,6 +31,11 @@ var APP = (function(){
         console.log('init');
     },
     setData = function(data){
+        $('#region').text(data.location.si + ' ' + data.location.gun + ' ' + data.location.gu);
+        $('#aptName').text(data.location.apt);
+        $('#btnGoogle').attr('href', 'https://www.google.co.kr/search?q=' + data.location.apt);
+        $('#btnNaver').attr('href', 'https://search.naver.com/search.naver?query=' + data.location.apt);
+
         var i, j;
 
         for(i = 0, j = data.roomTypes.length ; i < j ; i++){
@@ -54,11 +59,37 @@ var APP = (function(){
                 '</tr>').appendTo('#rows');
         }
 
+        var lang_kor = {
+            "decimal" : "",
+            "emptyTable" : "데이터가 없습니다.",
+            "info" : "_START_ - _END_ (총 _TOTAL_ 건)",
+            "infoEmpty" : "0건",
+            "infoFiltered" : "(전체 _MAX_ 건 중 검색결과)",
+            "infoPostFix" : "",
+            "thousands" : ",",
+            "lengthMenu" : "_MENU_ 개씩 보기",
+            "loadingRecords" : "로딩중...",
+            "processing" : "처리중...",
+            "search" : "검색 : ",
+            "zeroRecords" : "검색된 데이터가 없습니다.",
+            "paginate" : {
+                "first" : "첫 페이지",
+                "last" : "마지막 페이지",
+                "next" : "다음",
+                "previous" : "이전"
+            },
+            "aria" : {
+                "sortAscending" : " :  오름차순 정렬",
+                "sortDescending" : " :  내림차순 정렬"
+            }
+        };
+
         $('#aptInfo').DataTable( {
-            dom: 'Bfrtip',
+            dom: 'Brtip',
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
+                'copy'
+            ],
+            language:lang_kor
         } );
     };
 
