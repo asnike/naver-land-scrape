@@ -52,6 +52,22 @@
         #region:after{
             content:']'
         }
+        #existView{
+            display: none;
+        }
+        #emptyView{
+            display: block;
+        }
+        ol.example{
+            padding-left:20px;
+        }
+        ol.example > li{
+            margin-bottom: 20px;
+            font-weight:bold;
+        }
+        
+        
+        
         .btn-google {
             color: #FFFFFF;
             background-color: #DD4B39;
@@ -165,36 +181,49 @@
 </head>
 <body>
     <div style="padding:15px; ">
-        <h4 style="margin-top:0;font-weight: bold;color: #394e60;">네이버 분양 정보 긁어오기</h4>
+        <h4 style="margin-top:0;font-weight: bold;color: #394e60;"><img src="imgs/logo24.png"> 네이버 분양 정보 정리</h4>
 
-        <div>
-            <h5 id="region"></h5>  <h5 id="aptName"></h5>
-            <a target="new" id="btnGoogle"><div class="btn btn-google btn-sm pull-right">구글 검색</div></a>
-            <a target="new" id="btnNaver"><div class="btn btn-naver btn-sm pull-right" style="margin-right: 5px;">네이버 검색</div></a>
-        </div>
-        <div class="frame">
-            <div style="width:1500px;padding:15px;">
-                <table class="table table-bordered table-condensed table-striped text-center" id="aptInfo" style="font-size:12px;">
-                    <thead>
-                    <th>행정도시(시)</th>
-                    <th>행정도시(구)</th>
-                    <th>행정도시(동)</th>
-                    <th>아파트명</th>
-                    <th>입주년도</th>
-                    <th>동수</th>
-                    <th>층수</th>
-                    <th>세대수</th>
-                    <th>타입</th>
-                    <th>공급면적</th>
-                    <th>전용면적</th>
-                    <th>방수</th>
-                    <th>욕실수</th>
-                    <th>현관구조</th>
-                    <th>난방</th>
-                    </thead>
-                    <tbody id="rows"></tbody>
-                </table>
+        <div id="existView">
+            <div>
+                <h5 id="region"></h5>  <h5 id="aptName"></h5>
+                <a target="new" id="btnGoogle"><div class="btn btn-google btn-sm pull-right">구글 검색</div></a>
+                <a target="new" id="btnNaver"><div class="btn btn-naver btn-sm pull-right" style="margin-right: 5px;">네이버 검색</div></a>
             </div>
+            <div class="frame">
+                <div style="width:1500px;padding:15px;">
+                    <table class="table table-bordered table-condensed table-striped text-center" id="aptInfo" style="font-size:12px;">
+                        <thead>
+                        <th>행정도시(시)</th>
+                        <th>행정도시(구)</th>
+                        <th>행정도시(동)</th>
+                        <th>아파트명</th>
+                        <th>입주년도</th>
+                        <th>동수</th>
+                        <th>층수</th>
+                        <th>세대수</th>
+                        <th>타입</th>
+                        <th>공급면적</th>
+                        <th>전용면적</th>
+                        <th>방수</th>
+                        <th>욕실수</th>
+                        <th>현관구조</th>
+                        <th>난방</th>
+                        </thead>
+                        <tbody id="rows"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="emptyView">
+            <p>
+                <strong style="color:red;"><i class="glyphicon glyphicon-alert"></i> 올바른 실행이 아닙니다. 아래의 순서대로 진행하신 후 실행 해 주세요.</strong>
+            <ol class="example">
+                <li>네이버 부동산에 접속 하세요. <a target="new" class="btn btn-naver btn-sm" href="http://land.naver.com/">네이버 부동산</a></li>
+                <li>지도 윗 부분의 분양권을 클릭하세요. <img style="display: block;" src="imgs/exsample1.png"></li>
+                <li>지도 윗 부분의 지역을 설정하세요. <img style="display: block;" src="imgs/exsample2.png" /></li>
+                <li>지도 아랫 부분의 평면도 탭을 클릭하세요. <img style="display: block;" src="imgs/exsample3.png" /></li>
+                <li>확장 프로그램을 실행하세요.</li>
+            </ol></p>
         </div>
     </div>
 </body>

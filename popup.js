@@ -31,6 +31,10 @@ var APP = (function(){
         console.log('init');
     },
     setData = function(data){
+        if(data.location && data.location.si && data.roomTypes.length > 0){
+            $('#existView').css({'display':'block'});
+            $('#emptyView').css({'display':'none'});
+        }else return;
         $('#region').text(data.location.si + ' ' + data.location.gun + ' ' + data.location.gu);
         $('#aptName').text(data.location.apt);
         $('#btnGoogle').attr('href', 'https://www.google.co.kr/search?q=' + data.location.apt);
