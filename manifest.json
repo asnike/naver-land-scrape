@@ -1,8 +1,8 @@
 {
   "manifest_version":2,
-  "name":"naver land scrape",
-  "description":"naver land scrape",
-  "version":"1.0",
+  "name":"Naver Land Scraper",
+  "description":"Naver Land Scraper",
+  "version":"1.1",
   "icons":{
     "48":"imgs/icon.png"
   },

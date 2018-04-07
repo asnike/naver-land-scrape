@@ -48,7 +48,7 @@ var APP = (function(){
                 '<td>'+data.location.gun+'</td>'+
                 '<td>'+data.location.gu+'</td>'+
                 '<td>'+data.location.apt+'</td>'+
-                '<td>'+data.aptInfo.moveInDate+'</td>'+
+                '<td>'+data.aptInfo.moveInDate.replace('.', '-')+'</td>'+
                 '<td>'+data.aptInfo.totalNumOfDong+'</td>'+
                 '<td>'+data.aptInfo.totalNumOfFloor+'</td>'+
                 '<td>'+data.roomTypes[i].numOfHouseholds+'</td>'+
