@@ -1,24 +1,23 @@
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 chrome.extension.onMessage.addListener(function(request, sender) {
+    console.log('onMessage');
     if (request.action == "getSource") {
         console.log(request.source);
         APP.setData(request.source);
     }
 });
 
+
+
 function onWindowLoad() {
     chrome.tabs.executeScript(null, {
-        file: 'libs/jquery-3.2.0.min.js'
-    }, function(){
-        chrome.tabs.executeScript(null, {
-            file: "getSource.js"
-        }, function() {
-            if (chrome.extension.lastError) {
-                document.body.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
-            }
-        });
+        file: "getSource.js"
+    }, function() {
+        if (chrome.extension.lastError) {
+            document.body.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
+        }
     });
     APP.init();
 }
@@ -31,6 +30,7 @@ var APP = (function(){
         console.log('init');
     },
     setData = function(data){
+        console.log(data);
         if(data.location && data.location.si && data.roomTypes.length > 0){
             $('#existView').css({'display':'block'});
             $('#emptyView').css({'display':'none'});
