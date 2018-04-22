@@ -13,11 +13,15 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 
 function onWindowLoad() {
     chrome.tabs.executeScript(null, {
-        file: "getSource.js"
-    }, function() {
-        if (chrome.extension.lastError) {
-            document.body.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
-        }
+        file: 'libs/jquery-3.2.0.min.js'
+    }, function(){
+        chrome.tabs.executeScript(null, {
+            file: "getSource.js"
+        }, function() {
+            if (chrome.extension.lastError) {
+                document.body.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
+            }
+        });
     });
     APP.init();
 }
