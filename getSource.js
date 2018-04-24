@@ -15,7 +15,7 @@ function getData(){
     };
 
     if($('#ground_area ul.plane>li').length > 0){
-
+        console.log('type 1');
         $('#ground_area ul.plane>li').each(function(index, child){
 
             roomTypes.push({
@@ -54,6 +54,7 @@ function getData(){
             roomTypes:roomTypes
         }
     }else if($('#_ptpInfoArea')[0]){
+        console.log('type 2');
         var exportDataRaw = $($('script[language="JavaScript"][type="text/javascript"]')[0]).text().substring(
             $($('script[language="JavaScript"][type="text/javascript"]')[0]).text().indexOf('var oNoticeInfo = '),
             $($('script[language="JavaScript"][type="text/javascript"]')[0]).text().indexOf('var isaleInfo = ')
@@ -62,12 +63,25 @@ function getData(){
         var a = eval(exportDataRaw);
         console.log(oNoticeInfo);
 
+        var tempInfo = $('.map_detail_area table.tbl_detail tr:nth-child(2) td').text().replace(/\s|\t|\n|\r/g, ''),
+            totalNumOfFloor = tempInfo.substring(0, tempInfo.indexOf('층')).replace(/\s/g, ''),
+            totalNumOfDong = tempInfo.substring((tempInfo.indexOf('층')+2), tempInfo.indexOf('개동')),
+            totalNumOfHouseholds = tempInfo.substring((tempInfo.indexOf('총')+1), tempInfo.indexOf('가구')),
+            totalNumOfJohapwon = tempInfo.indexOf('조합원분') > -1 ? (tempInfo.substring((tempInfo.indexOf('조합원분')+4), tempInfo.indexOf('가구', tempInfo.indexOf('조합원분')))) : '-',
+            totalNumOfStandard = tempInfo.indexOf('일반분양분') > -1 ? (tempInfo.substring((tempInfo.indexOf('일반분양분')+5), tempInfo.indexOf('가구', tempInfo.indexOf('일반분양분')))) : '-';
+        console.log('tempInfo : ', tempInfo);
+        console.log('층 : ', totalNumOfFloor);
+        console.log('동 : ', totalNumOfDong);
+        console.log('세대 : ', totalNumOfHouseholds);
+        console.log('조합원분 : ', totalNumOfJohapwon);
+        console.log('일반분양분 : ', totalNumOfStandard);
+
         var aptInfo = {
-            moveInDate:$('table.tbl_detail tr:nth-child(3) td').text(),
-            totalNumOfHouseholds:$('table.tbl_detail tr:nth-child(1) td').text(),
-            totalNumOfDong:'',
-            totalNumOfFloor:'',
-            heating:'',
+            moveInDate:$('.map_detail_area table.tbl_detail tr:nth-child(4) td').text(),
+            totalNumOfHouseholds:totalNumOfHouseholds,
+            totalNumOfDong:totalNumOfDong,
+            totalNumOfFloor:totalNumOfFloor,
+            heating:$('.map_detail_area table.tbl_detail tr:nth-child(7) td').text().replace(/\s|\t|\n|\r/g, ''),
         };
 
         var roomTypes = [], entranceTypes = {'10': '계단식', '20':'복도식'};
@@ -89,12 +103,14 @@ function getData(){
         console.log({
             location:location,
             roomTypes:roomTypes,
-            oNoticeInfo:oNoticeInfo
+            oNoticeInfo:oNoticeInfo,
+            aptInfo:aptInfo,
         });
         return {
             location:location,
             roomTypes:roomTypes,
-            oNoticeInfo:oNoticeInfo
+            oNoticeInfo:oNoticeInfo,
+            aptInfo:aptInfo,
         }
     }
 
